@@ -63,21 +63,21 @@ do
 		echo -en "\033[0;36m${s:10}\033[0m "
 
 		# Check for modified files
-		if [ $(git status | grep $check_modif -c) -ne 0 ]
+		if [ $(git status | grep "$check_modif" -c) -ne 0 ]
 		then
 			mod=1
 			echo -en "\033[0;93m$message_modif\033[0m "
 		fi
 
 		# Check for untracked files
-		if [ $(git status | grep $check_untr -c) -ne 0 ]
+		if [ $(git status | grep "$check_untr" -c) -ne 0 ]
 		then
 			mod=1
 			echo -en "\033[0;91m$message_untr\033[0m "
 		fi
 
         # Check for unpushed changes
-        if [ $(git status | grep $check_unpush -c) -ne 0 ]
+        if [ $(git status | grep "$check_unpush" -c) -ne 0 ]
         then
             mod=1
             echo -en "\033[0;92m$message_unpush\033[0m "
@@ -94,6 +94,8 @@ do
         
 		cd ../
 	else
+        #not a git repository
+
 	    echo -en "\033[0;37m"
     	echo "${f}"
 		echo "$no_git"
