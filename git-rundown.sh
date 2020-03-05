@@ -6,25 +6,23 @@ case $LANG in
         check_modif="modificado"
         message_modif="modificado"
         check_untr="seguimiento"
-        message_untr="Archivos sin seguimiento"
+        message_untr="archivos sin seguimiento"
         check_unpush="adelantada"
         message_unpush="falta hacer push"
         clean="nada a hacer commit"
         no_git="no es un repositorio de git"
         ;;
-    en_EN.UTF-8)
+    en_US.UTF-8)
         check_modif="modified"
         message_modif="modified"
-        check_untr="Untracked"
-        message_untr="Untracked"
+        check_untr="untracked"
+        message_untr="untracked"
         check_unpush="ahead"
-        message_unpush"unpushed"
+        message_unpush="unpushed"
         clean="nothing to commit"
         no_git="not a git repository"
         ;;
 esac
-
-#
 
 dir="$1"
 
@@ -94,7 +92,7 @@ do
         
 		cd ../
 	else
-        #not a git repository
+        # Not a git repository
 
 	    echo -en "\033[0;37m"
     	echo "${f}"
@@ -103,4 +101,3 @@ do
 	fi
     echo
 done
-
