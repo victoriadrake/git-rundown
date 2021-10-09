@@ -12,7 +12,7 @@ case $LANG in
         clean="nada a hacer commit"
         no_git="no es un repositorio de git"
         ;;
-    en_US.UTF-8)
+    *)
         check_modif="modified"
         message_modif="modified"
         check_untr="untracked"
@@ -27,7 +27,7 @@ esac
 dir="$1"
 
 # No directory has been provided, use current
-if [ -z "$dir" ]
+if [[ -z "$dir" ]]
 then
     dir="`pwd`"
 fi
@@ -44,10 +44,10 @@ fi
 for f in $dir
 do
 	# Only interested in directories
-	[ -d "${f}" ] || continue
+	[[ -d "${f}" ]] || continue
 
 	# Check if directory is a git repository
-	if [ -d "$f/.git" ]
+	if [[ -d "$f/.git" ]]
 	then
         echo -en "\033[0;35m"
 	    echo "${f}"
@@ -61,21 +61,21 @@ do
 		echo -en "\033[0;36m${s:10}\033[0m "
 
 		# Check for modified files
-		if [ $(git status | grep "$check_modif" -c) -ne 0 ]
+		if [[ $(git status | grep "$check_modif" -c) -ne 0 ]]
 		then
 			mod=1
 			echo -en "\033[0;93m$message_modif\033[0m "
 		fi
 
 		# Check for untracked files
-		if [ $(git status | grep "$check_untr" -c) -ne 0 ]
+		if [[ $(git status | grep "$check_untr" -c) -ne 0 ]]
 		then
 			mod=1
 			echo -en "\033[0;91m$message_untr\033[0m "
 		fi
 
         # Check for unpushed changes
-        if [ $(git status | grep "$check_unpush" -c) -ne 0 ]
+        if [[ $(git status | grep "$check_unpush" -c) -ne 0 ]]
         then
             mod=1
             echo -en "\033[0;92m$message_unpush\033[0m "
@@ -83,7 +83,7 @@ do
 
 
 		# Check if everything is peachy keen
-		if [ $mod -eq 0 ]
+		if [[ $mod -eq 0 ]]
 		then
 			echo -en "$clean"
 		fi
