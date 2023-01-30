@@ -2,7 +2,7 @@
 
 # Check system language and add strings
 case $LANG in 
-    es_ES.UTF-8)
+    es_ES.UTF-8|es_AR.UTF-8)
         check_modif="modificado"
         message_modif="modificado"
         check_untr="seguimiento"
